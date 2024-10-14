@@ -24,3 +24,12 @@ class User(BaseApi):
 	def get_user_id(self):
 		"""A method that might be useful to convert username to user_id. For example a user can initialize with a username and get a userid"""
 		return self._user_id
+	
+	def get_user_by_username(cls, username):
+		for user in cls._user_map.values():
+			if user.get_username() == username:
+				return user
+			return None
+
+	def get_user_by_user_id(cls, user_id):
+		return cls._user_map.get(user_id, None)
